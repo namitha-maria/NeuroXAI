@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroXAI - AI-Powered Dementia Stage Analysis</title>
+  <meta name="description" content="AI-assisted dementia stage analysis with explainable insights. Upload brain MRI scans for transparent, interpretable predictions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 9 9v1.5a1.5 1.5 0 0 1-3 0V11a6 6 0 0 0-12 0v6a3 3 0 0 0 3 3h1"/><path d="M12 11v4"/><circle cx="12" cy="18" r="1"/></svg>
+        </div>
+        <span class="logo-text">Neuro<span>XAI</span></span>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+      <div style="width: 96px;"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="badge">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 9 9v1.5a1.5 1.5 0 0 1-3 0V11a6 6 0 0 0-12 0v6a3 3 0 0 0 3 3h1"/><path d="M12 11v4"/><circle cx="12" cy="18" r="1"/></svg>
+          AI-Powered Neuroimaging Analysis
+        </div>
+        <h1>Neuro<span>XAI</span></h1>
+        <p class="hero-description">
+          AI-assisted dementia stage analysis with explainable insights. 
+          Upload a brain MRI scan and receive transparent, interpretable predictions.
+        </p>
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon primary">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <h3>Upload MRI</h3>
+            <p>Simple drag-and-drop interface</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon accent">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 9 9v1.5a1.5 1.5 0 0 1-3 0V11a6 6 0 0 0-12 0v6a3 3 0 0 0 3 3h1"/><path d="M12 11v4"/><circle cx="12" cy="18" r="1"/></svg>
+            </div>
+            <h3>AI Analysis</h3>
+            <p>Advanced neural network prediction</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon secondary">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Explainability</h3>
+            <p>Visual insights with Grad-CAM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section class="analysis-section" id="analysis">
+      <div class="container">
+        <div class="analysis-card">
+          <h2>MRI Scan Analysis</h2>
+          
+          <!-- Upload Zone -->
+          <div id="upload-zone" class="upload-zone">
+            <input type="file" id="file-input" accept=".nii,.nii.gz">
+            <div class="upload-icon">
+              <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <h3>Upload Brain MRI Scan</h3>
+            <p>Upload an ADNI MRI volume (.nii or .nii.gz)</p>
+            <div class="file-types">
+              <span class="file-type">.nii</span>
+              <span class="file-type">.nii.gz</span>
+            </div>
+          </div>
+
+          <!-- Analyzing State -->
+          <div id="analyzing-state" class="analyzing-state" style="display: none;">
+            <div class="analyzing-spinner">
+              <div class="analyzing-spinner-inner">
+                <svg class="icon icon-xl" style="color: var(--primary);" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 9 9v1.5a1.5 1.5 0 0 1-3 0V11a6 6 0 0 0-12 0v6a3 3 0 0 0 3 3h1"/><path d="M12 11v4"/><circle cx="12" cy="18" r="1"/></svg>
+              </div>
+              <div class="analyzing-spinner-ring"></div>
+            </div>
+            <h3>Analyzing scan...</h3>
+            <p>Our AI is processing your MRI image</p>
+          </div>
+
+          <!-- Results -->
+          <div id="results-section" style="display: none;">
+            <div class="results-grid">
+              <!-- Prediction Result -->
+              <div class="result-card">
+                <div class="result-header">
+                  <svg class="icon icon-sm" style="color: var(--primary);" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <h3>Prediction Result</h3>
+                </div>
+                <div id="stage-badge" class="stage-badge non-demented">
+                  <span id="stage-text">Non-Demented</span>
+                </div>
+                <div class="confidence-bar">
+                  <div class="confidence-bar-header">
+                    <span>Confidence</span>
+                    <span id="confidence-text">92%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div id="progress-fill" class="progress-fill" style="width: 92%;"></div>
+                  </div>
+                </div>
+                <p id="description-text" class="result-description">
+                  The scan shows no significant indicators of dementia.
+                </p>
+                <div class="info-box">
+                  <svg class="icon icon-sm" style="color: var(--muted-foreground); flex-shrink: 0; margin-top: 2px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  <p>This prediction is generated by an AI model and should be reviewed by a qualified medical professional.</p>
+                </div>
+              </div>
+
+              <!-- Explainability View -->
+              <div class="result-card">
+                <div class="result-header">
+                  <svg class="icon icon-sm" style="color: var(--accent);" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  <h3>Explainability Analysis</h3>
+                </div>
+                <div class="tabs">
+                  <button class="tab-btn active" data-tab="original">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Original MRI
+                  </button>
+                  <button class="tab-btn" data-tab="heatmap">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    Grad-CAM Heatmap
+                  </button>
+                </div>
+                <div id="tab-original" class="tab-content active">
+                  <div class="image-container">
+                    <img id="original-image" src="" alt="Original MRI Scan">
+                  </div>
+                  <p class="image-description">The original brain MRI scan as uploaded.</p>
+                </div>
+                <div id="tab-heatmap" class="tab-content">
+                  <div class="image-container">
+                    <img id="heatmap-original" src="" alt="Original MRI">
+                    <img id="heatmap-overlay" class="heatmap-overlay" src="">
+                  </div>
+
+                  <input type="range"
+                        id="slice-slider"
+                        min="0"
+                        max="15"
+                        value="8"
+                        style="width:100%; margin-top:10px;">
+
+                  <p style="text-align:center;">
+                    Slice Index: <span id="slice-index">8</span>
+                  </p>
+
+                  <p class="image-description">
+                    <strong>Grad-CAM visualization:</strong>
+                    Highlighted regions indicate areas the AI model focused on.
+                  </p>
+                </div>
+
+                <div class="info-box" style="background: var(--secondary);">
+                  <svg class="icon icon-sm" style="color: var(--secondary-foreground); flex-shrink: 0; margin-top: 2px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  <p style="color: var(--secondary-foreground);">Explainability visualizations help understand which brain regions influenced the AI's prediction, supporting transparent and interpretable analysis.</p>
+                </div>
+              </div>
+            </div>
+            <button id="reset-btn" class="reset-btn">Analyze Another Scan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <h2>How It Works</h2>
+        <p>Our AI-powered system analyzes brain MRI scans to provide transparent dementia stage predictions.</p>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number primary">1</div>
+            <h3>Upload</h3>
+            <p>Upload a brain MRI scan in .nii format through our secure interface.</p>
+          </div>
+          <div class="step">
+            <div class="step-number accent">2</div>
+            <h3>Analyze</h3>
+            <p>Our deep learning model processes the scan and identifies key patterns.</p>
+          </div>
+          <div class="step">
+            <div class="step-number secondary">3</div>
+            <h3>Explain</h3>
+            <p>View the prediction alongside Grad-CAM visualizations showing model focus areas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2>About NeuroXAI</h2>
+        <p>NeuroXAI combines advanced deep learning with explainable AI (XAI) techniques to provide transparent insights into dementia stage classification from brain MRI scans.</p>
+        <p>Our mission is to support medical professionals with interpretable AI tools that enhance clinical decision-making while maintaining full transparency about how predictions are generated.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 NeuroXAI. All rights reserved.</p>
+      <p><strong>Disclaimer:</strong> For research and educational purposes only. This tool is not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified healthcare professional for medical advice.</p>
+    </div>
+  </footer>
+
+ <script>
+  console.log("JS LOADED");
+
+  // -----------------------------
+  // DOM ELEMENTS
+  // -----------------------------
+  const uploadZone = document.getElementById('upload-zone');
+  const fileInput = document.getElementById('file-input');
+  const analyzingState = document.getElementById('analyzing-state');
+  const resultsSection = document.getElementById('results-section');
+
+  const stageBadge = document.getElementById('stage-badge');
+  const stageText = document.getElementById('stage-text');
+  const confidenceText = document.getElementById('confidence-text');
+  const progressFill = document.getElementById('progress-fill');
+  const descriptionText = document.getElementById('description-text');
+  const originalImage = document.getElementById('original-image');
+  const heatmapOriginal = document.getElementById('heatmap-original');
+  const resetBtn = document.getElementById('reset-btn');
+  const tabBtns = document.querySelectorAll('.tab-btn');
+
+  // -----------------------------
+  // FILE INPUT
+  // -----------------------------
+  fileInput.addEventListener('change', () => {
+    console.log("FILE SELECTED");
+    if (!fileInput.files.length) return;
+    startAnalysis();
+  });
+
+  // -----------------------------
+  // SEND TO FASTAPI
+  // -----------------------------
+  async function startAnalysis() {
+    uploadZone.style.display = 'none';
+    analyzingState.style.display = 'flex';
+    resultsSection.style.display = 'none';
+
+    const file = fileInput.files[0];
+
+    const formData1 = new FormData();
+    formData1.append("file", file);
+
+    const formData2 = new FormData();
+    formData2.append("file", file);
+
+    try {
+      console.log("🚀 Sending request to backend...");
+
+      // -------- Prediction --------
+      const response = await fetch(
+        "http://127.0.0.1:8000/predict_nii",
+        {
+          method: "POST",
+          body: formData1
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || "Prediction failed");
+      }
+
+      showResults({
+        stage: data.stage,
+        confidence: data.confidence,
+        description: "Subject-level prediction using ADNI DenseNet–ViT",
+        severity: data.stage.toLowerCase()
+      });
+
+    // -------- Grad-CAM --------
+      const gradcamResponse = await fetch(
+        "http://127.0.0.1:8000/gradcam",
+        {
+          method: "POST",
+          body: formData2
+        }
+      );
+
+      const gradcamData = await gradcamResponse.json();
+
+      window.originalSlices = gradcamData.original_slices;
+      window.overlaySlices = gradcamData.overlay_slices;
+
+      updateSlice(8);
+
+    } catch (err) {
+      console.error(err);
+      analyzingState.style.display = 'none';
+      uploadZone.style.display = 'flex';
+      alert(err.message);
+    }
+  }
+
+
+  // -----------------------------
+  // SHOW RESULTS
+  // -----------------------------
+  function showResults(prediction) {
+    analyzingState.style.display = 'none';
+    resultsSection.style.display = 'block';
+
+    stageBadge.className = 'stage-badge ' + prediction.severity;
+    stageText.textContent = prediction.stage;
+
+    confidenceText.textContent = prediction.confidence + '%';
+    progressFill.style.width = '0%';
+    setTimeout(() => {
+      progressFill.style.width = prediction.confidence + '%';
+    }, 100);
+
+    descriptionText.textContent = prediction.description;
+
+  }
+
+  // -----------------------------
+  // RESET
+  // -----------------------------
+  resetBtn.addEventListener('click', () => {
+    uploadZone.style.display = 'flex';
+    analyzingState.style.display = 'none';
+    resultsSection.style.display = 'none';
+    fileInput.value = '';
+
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+    tabBtns[0].classList.add('active');
+    document.getElementById('tab-original').classList.add('active');
+    document.getElementById('tab-heatmap').classList.remove('active');
+  });
+
+  // -----------------------------
+  // TAB SWITCHING
+  // -----------------------------
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+
+  // -----------------------------
+  // SLICE SLIDER LOGIC
+  // -----------------------------
+  function updateSlice(index) {
+    document.getElementById("original-image").src =
+      "data:image/png;base64," + window.originalSlices[index];
+
+    document.getElementById("heatmap-original").src =
+      "data:image/png;base64," + window.originalSlices[index];
+
+    document.getElementById("heatmap-overlay").src =
+      "data:image/png;base64," + window.overlaySlices[index];
+
+    document.getElementById("slice-index").textContent = index;
+  }
+
+  window.addEventListener("DOMContentLoaded", function () {
+    const slider = document.getElementById("slice-slider");
+    if (slider) {
+      slider.addEventListener("input", function () {
+        updateSlice(parseInt(this.value));
+      });
+    }
+  });
+
+
+</script>
+
+
+</body>
+</html>

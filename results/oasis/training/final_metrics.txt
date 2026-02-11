@@ -1,0 +1,7 @@
+FINAL TRAINING RESULTS – OASIS
+
+Best Epoch: 6
+Best Validation Accuracy: 0.5106
+Epochs Trained: 8
+Batch Size: 1
+Slices per Subject: 16

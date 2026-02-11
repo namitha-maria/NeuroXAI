@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large MRI files
+*.nii
+*.nii.gz
+
+# Model checkpoints (optional – see note below)
+*.pth
+
+# VS Code
+.vscode/
