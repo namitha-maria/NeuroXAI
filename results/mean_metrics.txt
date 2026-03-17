@@ -1,6 +1,0 @@
-Mean ± Std (5-Fold Cross-Validation)
-
-Accuracy: 0.5316 ± 0.1243
-Precision: 0.2004 ± 0.0804
-Recall: 0.3402 ± 0.0154
-F1: 0.2452 ± 0.0638
